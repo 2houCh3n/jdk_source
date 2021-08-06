@@ -432,7 +432,7 @@ public class ArrayList<E> extends AbstractList<E>
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
     public E get(int index) {
-        rangeCheck(index);
+        rangeCheck(index); // 检查index范围是否正确
 
         return elementData(index);
     }
@@ -449,7 +449,7 @@ public class ArrayList<E> extends AbstractList<E>
     public E set(int index, E element) {
         rangeCheck(index);
 
-        E oldValue = elementData(index);
+        E oldValue = elementData(index); // 拿出原来该位置的元素，后面要返回
         elementData[index] = element;
         return oldValue;
     }
