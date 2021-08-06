@@ -153,7 +153,7 @@ public class ArrayList<E> extends AbstractList<E>
             this.elementData = new Object[initialCapacity];
         } else if (initialCapacity == 0) { // 如果长度等于0.就创建一个空实例
             this.elementData = EMPTY_ELEMENTDATA;
-        } else { // 如果小于0，就抛异常
+        } else { // 如果小于0，就抛异常！
             throw new IllegalArgumentException("Illegal Capacity: "+
                                                initialCapacity);
         }
@@ -432,7 +432,7 @@ public class ArrayList<E> extends AbstractList<E>
      * @throws IndexOutOfBoundsException {@inheritDoc}
      */
     public E get(int index) {
-        rangeCheck(index);
+        rangeCheck(index); // 检查index范围是否正确
 
         return elementData(index);
     }
@@ -449,7 +449,7 @@ public class ArrayList<E> extends AbstractList<E>
     public E set(int index, E element) {
         rangeCheck(index);
 
-        E oldValue = elementData(index);
+        E oldValue = elementData(index); // 拿出原来该位置的元素，后面要返回
         elementData[index] = element;
         return oldValue;
     }
@@ -498,7 +498,7 @@ public class ArrayList<E> extends AbstractList<E>
         rangeCheck(index); // 如果index大于size，就抛异常
 
         modCount++;
-        E oldValue = elementData(index);// 
+        E oldValue = elementData(index);//
 
         int numMoved = size - index - 1;
         if (numMoved > 0)
