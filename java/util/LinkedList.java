@@ -84,21 +84,21 @@ public class LinkedList<E>
     extends AbstractSequentialList<E>
     implements List<E>, Deque<E>, Cloneable, java.io.Serializable
 {
-    transient int size = 0;
+    transient int size = 0; // list中所含有的元素个数
 
     /**
      * Pointer to first node.
      * Invariant: (first == null && last == null) ||
      *            (first.prev == null && first.item != null)
      */
-    transient Node<E> first;
+    transient Node<E> first; // 头结点
 
     /**
      * Pointer to last node.
      * Invariant: (first == null && last == null) ||
      *            (last.next == null && last.item != null)
      */
-    transient Node<E> last;
+    transient Node<E> last; // 尾结点
 
     /**
      * Constructs an empty list.
@@ -384,7 +384,7 @@ public class LinkedList<E>
      * @throws NullPointerException if the specified collection is null
      */
     public boolean addAll(Collection<? extends E> c) {
-        return addAll(size, c);
+        return addAll(size, c); // 默认是在size后面直接添加
     }
 
     /**
@@ -403,7 +403,7 @@ public class LinkedList<E>
      * @throws NullPointerException if the specified collection is null
      */
     public boolean addAll(int index, Collection<? extends E> c) {
-        checkPositionIndex(index);
+        checkPositionIndex(index); // 检查index是否在合理范围[0, size)
 
         Object[] a = c.toArray();
         int numNew = a.length;
@@ -411,10 +411,10 @@ public class LinkedList<E>
             return false;
 
         Node<E> pred, succ;
-        if (index == size) {
+        if (index == size) { // 直接在尾结点后面添加
             succ = null;
             pred = last;
-        } else {
+        } else { // 在链表中间添加的话
             succ = node(index);
             pred = succ.prev;
         }
@@ -563,15 +563,15 @@ public class LinkedList<E>
     /**
      * Returns the (non-null) Node at the specified element index.
      */
-    Node<E> node(int index) {
+    Node<E> node(int index) { // 找到index对应位置的节点
         // assert isElementIndex(index);
 
-        if (index < (size >> 1)) {
+        if (index < (size >> 1)) { // 如果index在链表的左半边，就从头结点开始向后遍历
             Node<E> x = first;
             for (int i = 0; i < index; i++)
                 x = x.next;
             return x;
-        } else {
+        } else { // 如果index在链表的右半边，就从尾结点开始向前遍历
             Node<E> x = last;
             for (int i = size - 1; i > index; i--)
                 x = x.prev;
