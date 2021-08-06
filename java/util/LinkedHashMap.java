@@ -201,12 +201,12 @@ public class LinkedHashMap<K,V>
     /**
      * The head (eldest) of the doubly linked list.
      */
-    transient LinkedHashMap.Entry<K,V> head;
+    transient LinkedHashMap.Entry<K,V> head; // 指向该双向链表的头节点
 
     /**
      * The tail (youngest) of the doubly linked list.
      */
-    transient LinkedHashMap.Entry<K,V> tail;
+    transient LinkedHashMap.Entry<K,V> tail;  // 指向该双向链表的尾结点
 
     /**
      * The iteration ordering method for this linked hash map: <tt>true</tt>
@@ -214,7 +214,7 @@ public class LinkedHashMap<K,V>
      *
      * @serial
      */
-    final boolean accessOrder;
+    final boolean accessOrder; // 默认是false。如果为true的话，get一个key或者覆盖一个key的时候，会把该节点移到链表的尾部去
 
     // internal utilities
 
