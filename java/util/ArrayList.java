@@ -153,7 +153,7 @@ public class ArrayList<E> extends AbstractList<E>
             this.elementData = new Object[initialCapacity];
         } else if (initialCapacity == 0) { // 如果长度等于0.就创建一个空实例
             this.elementData = EMPTY_ELEMENTDATA;
-        } else { // 如果小于0，就抛异常
+        } else { // 如果小于0，就抛异常！
             throw new IllegalArgumentException("Illegal Capacity: "+
                                                initialCapacity);
         }
@@ -498,7 +498,7 @@ public class ArrayList<E> extends AbstractList<E>
         rangeCheck(index); // 如果index大于size，就抛异常
 
         modCount++;
-        E oldValue = elementData(index);// 
+        E oldValue = elementData(index);//
 
         int numMoved = size - index - 1;
         if (numMoved > 0)
