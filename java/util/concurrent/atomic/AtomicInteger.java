@@ -55,8 +55,8 @@ public class AtomicInteger extends Number implements java.io.Serializable {
     private static final long serialVersionUID = 6214790243416807050L;
 
     // setup to use Unsafe.compareAndSwapInt for updates
-    private static final Unsafe unsafe = Unsafe.getUnsafe();
-    private static final long valueOffset;
+    private static final Unsafe unsafe = Unsafe.getUnsafe(); // JDK底层的一个类，只允许jdk内部使用。这个方法里面会判断调用这个方法的类的加载器是否是系统类加载器。如果不是说明不是jdk内部的
+    private static final long valueOffset; // 这个是我们value值在对象中的偏移量。然后就可以通过对象的地址和这个偏移量准确定位到value的地址
 
     static {
         try {
@@ -65,7 +65,7 @@ public class AtomicInteger extends Number implements java.io.Serializable {
         } catch (Exception ex) { throw new Error(ex); }
     }
 
-    private volatile int value;
+    private volatile int value; // AtomicInteger中实际存的值，用volatile修饰，保证可见性
 
     /**
      * Creates a new AtomicInteger with the given initial value.
